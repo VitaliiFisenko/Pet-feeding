@@ -1,0 +1,6 @@
+docs/*.png
+.coverage*
+!.coveragerc
+cover-html
+__pycache__
+.idea/
