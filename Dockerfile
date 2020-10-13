@@ -1,11 +1,11 @@
 FROM python:3.8-slim as base
-WORKDIR /backend/src
+WORKDIR /src
 ENV PYTHONUNBUFFERED True
-COPY /backend/requirements.txt .
+COPY /requirements.txt .
 RUN pip install -r requirements.txt
 
 
 FROM base as prod
-COPY backend/src .
+COPY /src .
 
 FROM prod

@@ -8,18 +8,18 @@ GIT_STAMP ?= $(shell git describe)
 .EXPORT_ALL_VARIABLES:
 
 
-run-back: COMPOSE ?= docker-compose -f compose-back.yml
-run-back: docker-build-back
+run: COMPOSE ?= docker-compose -f compose-base.yml
+run: docker-build
 	$(COMPOSE) up -d
 
 
-logs-back: COMPOSE ?= docker-compose -f compose-back.yml
-logs-back:
+logs: COMPOSE ?= docker-compose -f compose-base.yml
+logs:
 	$(COMPOSE) logs -f api
 
-stop-back: COMPOSE ?= docker-compose -f compose-back.yml
-stop-back:
+stop: COMPOSE ?= docker-compose -f compose-base.yml
+stop:
 	$(COMPOSE) stop
 
-docker-build-back:
-	docker build -f ./backend/Dockerfile --build-arg version=$(GIT_STAMP) -t $(BACK_IMAGE) .
+docker-build:
+	docker build --build-arg version=$(GIT_STAMP) -t $(BACK_IMAGE) .
