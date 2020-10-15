@@ -1,7 +1,9 @@
 version: '3'
+
+
 services:
   api:
-    image: "${BACK_IMAGE}"
+    image: "${IMAGE}"
     command: python -m pet_feeding.api
     environment:
       POSTGRES_PASSWORD: "pet"

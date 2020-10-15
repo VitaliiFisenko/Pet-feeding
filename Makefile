@@ -1,4 +1,4 @@
-BACK_IMAGE ?= backend:develop
+IMAGE ?= backend:develop
 CI_COMMIT_SHORT_SHA ?= $(shell git rev-parse --short HEAD)
 GIT_STAMP ?= $(shell git describe)
 
@@ -22,4 +22,4 @@ stop:
 	$(COMPOSE) stop
 
 docker-build:
-	docker build --build-arg version=$(GIT_STAMP) -t $(BACK_IMAGE) .
+	docker build --build-arg version=$(GIT_STAMP) -t $(IMAGE) .
