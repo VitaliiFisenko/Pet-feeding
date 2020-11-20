@@ -2,6 +2,8 @@ import logging
 
 from aiohttp import web
 
+from pet_feeding import models
+
 LOG = logging.getLogger(__name__)
 
 
@@ -10,6 +12,7 @@ async def ping(request):
 
 
 async def on_startup(app):
+    await models.main()
     LOG.info('App is starting ...')
 
 
