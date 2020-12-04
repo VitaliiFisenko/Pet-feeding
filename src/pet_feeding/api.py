@@ -2,6 +2,8 @@ import logging
 
 from aiohttp import web
 
+from pet_feeding import models
+from pet_feeding.tools import request_errors_middleware
 LOG = logging.getLogger(__name__)
 
 
@@ -10,6 +12,7 @@ async def ping(request):
 
 
 async def on_startup(app):
+    await models.main()
     LOG.info('App is starting ...')
 
 
@@ -22,7 +25,7 @@ def setup_routes(app):
 
 
 def create_app():
-    app = web.Application()
+    app = web.Application(middlewares=[request_errors_middleware, ])
     setup_routes(app)
     app.on_startup.append(on_startup)
     app.on_shutdown.append(on_shutdown)
